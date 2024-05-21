@@ -1,3 +1,14 @@
+<?php
+require_once './config/conexao.php';
+session_start();
+
+if (isset($_SESSION['usuario'])) {
+    header('Location: index_aut.php');
+}
+
+mysqli_close($conn);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
