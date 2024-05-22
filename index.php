@@ -22,7 +22,7 @@ mysqli_close($conn);
 <body>
     <div id="tv-container">
         <video id="video" controls autoplay loop>
-            <source src="assets/images/Covid-19 Hospital Central do Exército - TV CML.mp4" type="video/mp4">
+            <source src="assets/images/01-Video-Institucional-Unificado.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
