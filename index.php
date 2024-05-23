@@ -21,14 +21,14 @@ mysqli_close($conn);
 
 <body>
     <div id="tv-container">
-        <video id="video" controls autoplay loop>
-            <source src="assets/images/01-Video-Institucional-Unificado.mp4" type="video/mp4">
+        <video id="video" controls autoplay>
+            <!-- A tag <source> será adicionada dinamicamente via JavaScript -->
             Your browser does not support the video tag.
         </video>
     </div>
     <footer>
         <div class="clock-container" id="clock"></div>
-        <p>HCE TV CORPORATIVA</p>        
+        <p>HCE CFTV</p>        
         <marquee behavior="" direction="">Não alimente animais dentro do HCE! Seja um exemplo e mantenha a higiene do
             local. Os animais merecem nosso respeito e cuidado, mas nossa prioridade é manter um ambiente hospitalar
             seguro, limpo e acolhedor para todos.            
@@ -68,12 +68,40 @@ mysqli_close($conn);
                 video.play();
             });*/
 
+            // Lista de vídeos
+            var videoList = [
+                'assets/images/01-Video-Institucional.mp4',
+                'assets/images/02-Video-Institucional.mp4',
+                'assets/images/03-Video-Institucional.mp4',
+                'assets/images/04-Video-Institucional.mp4'
+            ];
+            var currentVideoIndex = 0;
+            var videoElement = document.getElementById('video');
+
+            // Função para carregar o vídeo atual
+            function loadVideo(index) {
+                videoElement.src = videoList[index];
+                videoElement.load();
+                videoElement.play();
+            }
+
+            // Evento para carregar o próximo vídeo quando o atual terminar
+            videoElement.addEventListener('ended', function () {
+                currentVideoIndex++;
+                if (currentVideoIndex >= videoList.length) {
+                    currentVideoIndex = 0;
+                }
+                loadVideo(currentVideoIndex);
+            });
+
+            // Carrega o primeiro vídeo
+            loadVideo(currentVideoIndex);
+
             //Reproduz o vídeo automaticamente após o evento canplaythrough
-            document.addEventListener('DOMContentLoaded', function () {
-                var video = document.getElementById('video');
-                video.muted = true; // Desativa o áudio
-                video.addEventListener('canplaythrough', function () {
-                    video.play();
+            document.addEventListener('DOMContentLoaded', function () {                
+                videoElement.muted = true; // Desativa o áudio
+                videoElement.addEventListener('canplaythrough', function () {
+                    videoElement.play();
                 });
             });
 
